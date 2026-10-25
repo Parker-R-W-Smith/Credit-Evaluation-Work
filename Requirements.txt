@@ -2,7 +2,7 @@ numpy
 pandas
 torch
 scipy
-sklearn
+scikit-learn
 matplotlib
 joblib
 FPDF
