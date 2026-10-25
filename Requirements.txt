@@ -1,5 +1,3 @@
-
-
 numpy
 pandas
 torch
@@ -11,6 +9,5 @@ FPDF
 fredapi
 yfinance
 datetime
-os
 traceback
 requests
