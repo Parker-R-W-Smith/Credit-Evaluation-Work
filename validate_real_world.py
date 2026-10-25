@@ -14,8 +14,7 @@ Checks the model against reality rather than simulation, in three parts:
        ranked against industry peers on the same dates.
 
 Part C is case-study evidence, not a statistical backtest: the sample is small
-and yfinance coverage of bankrupt firms is patchy. A proper backtest needs
-point-in-time data (e.g. CRSP/Compustat via WRDS) and a default database.
+and yfinance coverage of bankrupt firms is patchy/nonexistent. Find this first.
 
 Outputs:
     pricing_check.csv, cross_section.csv, cross_section.png, default_cases.csv
