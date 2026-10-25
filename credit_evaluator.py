@@ -18,7 +18,7 @@ from fredapi import Fred
 
 from credit_engine import fetch_inputs, load_bundle, score_window
 
-WINDOW = 120             # trading days; chosen from window_sweep.csv (state the reason)
+WINDOW = 120             # trading days (chosen from window_sweep.csv)
 ALERT_THRESHOLD = 0.30   # alert precision/recall at this level is reported by train_and_validate.py
 PORTFOLIO = ["BA", "AAPL", "DB", "APLD", "DJT", "MARA", "TENX", "NRXP"]
 
