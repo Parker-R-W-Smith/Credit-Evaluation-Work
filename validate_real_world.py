@@ -1,6 +1,8 @@
 """
 validate_real_world.py
 
+Work in Progress. Access to bankrupt company data required to do a full comparison.
+
 Checks the model against reality rather than simulation, in three parts:
 
     A. Pricing consistency: with no jumps, mjd_pd should reproduce the
@@ -64,7 +66,7 @@ HORIZONS = [365, 180, 90]   # days before filing
 
 # ------------------------------- Helpers ---------------------------------- #
 def altman_z(tk, as_of, market_equity):
-    """Original Altman (1968) Z-score. Designed for manufacturers; a rough benchmark elsewhere."""
+    """Original Altman (1968) Z-score"""
     bs, _ = statement_column(tk.balance_sheet, as_of)
     inc, _ = statement_column(tk.income_stmt, as_of)
     TA = first_value(bs, "Total Assets")
@@ -80,7 +82,7 @@ def altman_z(tk, as_of, market_equity):
 
 
 def score_firm(ticker, raw_r, bundle, as_of=None):
-    """Model PD, classical Merton PD and Altman Z for one firm at one date."""
+    """Model PD, classical Merton PD and Altman Z"""
     inp = fetch_inputs(ticker, raw_r, lookback_days=max(bundle["n_days"], KMV_DAYS), as_of=as_of)
     eq = inp["equity"].values
     res = score_window(eq, inp["D"], inp["r"].values, bundle, sector=inp["sector"])
