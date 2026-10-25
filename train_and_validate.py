@@ -6,7 +6,7 @@ best checkpoint, and runs parameter-recovery diagnostics on an independent
 test set.
 
 Outputs:
-    mjd_amortized_weights.pth   checkpoint (same format the main script loads)
+    mjd_weights.pth   checkpoint (same format the main script loads)
     recovery.png                predicted vs true for each parameter + loss curves
     pd_check.png                predicted vs true default probability
 """
