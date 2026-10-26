@@ -24,7 +24,7 @@ def mjd_pd(V, D, mu, sigma, lam, mu_j, sigma_j, T=1.0, tol=1e-12):
 def merton76_call(V, D, T, r, sigma, lam, mu_j, sigma_j, tol=1e-12):
     """
     Merton (1976) jump-diffusion call price: equity value as a call on firm assets.
-    Broadcasts: V can be (N, days); per-sample params should be (N, 1).
+    Broadcasts: V can be (N, days). Per-sample params should be (N, 1).
     """
     k = np.exp(mu_j + 0.5 * sigma_j**2) - 1
     lam_p = lam * (1 + k)
