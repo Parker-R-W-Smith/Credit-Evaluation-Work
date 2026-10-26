@@ -41,7 +41,7 @@ from pricing import mjd_pd
 WINDOW = 120
 KMV_DAYS = 252          # the classical model is usually calibrated on one year
 
-# Edit freely. A spread of sectors and credit quality makes rank correlations meaningful.
+# A spread of sectors and credit quality makes rank correlations meaningful.
 CROSS_SECTION = ["BA", "AAPL", "DB", "APLD", "DJT", "MARA", "TENX", "NRXP",
                  "F", "T", "VZ", "KO", "PFE", "INTC", "CCL", "AAL", "JBLU",
                  "KSS", "M", "GT", "RIVN", "LCID", "PLUG"]
@@ -120,7 +120,7 @@ def pricing_check():
     print(f"\nA. Pricing check: max |mjd_pd - merton_pd| with no jumps = {df['abs_diff'].max():.2e}")
     if df["abs_diff"].max() > 1e-6:
         print("   Mismatch. Expected if mjd_pd uses a first-passage barrier rather than "
-              "default at maturity; otherwise look for a bug in pricing.py.")
+              "default at maturity. Otherwise look for a bug in pricing.py.")
 
 
 # ------------------------- Part B: cross-section -------------------------- #
@@ -213,7 +213,7 @@ def default_cases(raw_r, bundle):
         print(f"  {col:<12} riskiest in group: {(valid == 1).sum()}/{len(valid)}")
     if (df["split_factor"] != 1).any():
         print("  Note: split adjustments applied for some firms. Check that the implied market "
-              "caps look right; if Yahoo already restated share counts, they are double-adjusted.")
+              "caps look right. If Yahoo already restated share counts, they are double-adjusted.")
 
 
 # ---------------------------------- Main ----------------------------------- #
