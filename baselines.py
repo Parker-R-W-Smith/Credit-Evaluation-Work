@@ -2,8 +2,8 @@
 baselines.py
 
 Classical Merton model calibrated with the iterative procedure of
-Vassalou & Xing (2004) and Bharath & Shumway (2008): no jumps, no neural
-network. It uses the same barrier (short-term debt + half of long-term debt),
+Vassalou & Xing (2004) and Bharath & Shumway (2008). It uses 
+the same barrier (short-term debt + half of long-term debt),
 the same horizon and the same physical-drift convention as the main model, so
 any disagreement comes from the jumps and the amortized estimation.
 """
