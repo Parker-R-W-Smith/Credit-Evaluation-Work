@@ -2,8 +2,7 @@
 credit_engine.py
 
 Data access and scoring shared by the daily evaluator and the validation
-scripts. One implementation means the validation results describe exactly the
-pipeline that produces the alerts.
+scripts.
 """
 import joblib
 import numpy as np
@@ -117,8 +116,7 @@ def fetch_inputs(ticker, raw_r, lookback_days, as_of=None):
     end = pd.Timestamp(as_of) if as_of is not None else pd.Timestamp.today().normalize()
     start = end - pd.Timedelta(days=int(lookback_days * 1.6) + 30)
 
-    # auto_adjust=False: Close is split-adjusted but not dividend-adjusted,
-    # so Close * shares is market cap.
+    # auto_adjust=False. Close is split-adjusted but not dividend-adjusted, so Close * shares is market cap.
     hist = tk.history(start=start, end=end + pd.Timedelta(days=1), auto_adjust=False)
     if hist.empty:
         raise ValueError("no price history (delisted tickers are often renamed or reused)")
@@ -168,8 +166,7 @@ def score_window(equity, D, r, bundle, sector=None):
     raw = (scaled * bundle["Y_std"] + bundle["Y_mean"]).numpy()
     clipped = clip_to_prior(raw[None, :])[0]
 
-    # Reliability: does the input look like training data, and did the
-    # network stay inside its prior?
+    # Reliability Checks
     flags = []
     if bundle["ood"] is not None:
         flags += check_window(x, bundle["ood"])
@@ -192,7 +189,7 @@ def score_window(equity, D, r, bundle, sector=None):
     # The isotonic calibrator was fit on risk-neutral PDs (r = 5%) from the
     # validation set. It corrects parameter-estimation error. Applying it to
     # PD_phys assumes that error does not depend on the drift used to compute
-    # the PD; robustness_drift.py tests this assumption.
+    # the PD. Note that robustness_drift.py tests this assumption.
     cal = bundle["calibrator"]
     pd_rn = float(cal.predict([pd_rn_raw])[0])
     pd_phys = float(cal.predict([pd_phys_raw])[0])
