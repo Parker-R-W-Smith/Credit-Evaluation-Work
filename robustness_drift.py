@@ -9,7 +9,7 @@ degrade as the rate moves away from the training value.
 
 The generator uses one r for both the asset drift and equity pricing, so this
 tests the rate mismatch directly and gives an approximate read on drift
-sensitivity for PD_phys; it does not separate the two.
+sensitivity for PD_phys. It does not separate the two.
 
 Outputs:
     drift_robustness.csv
