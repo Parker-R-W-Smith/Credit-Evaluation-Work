@@ -4,8 +4,8 @@ import torch
 import torch.nn as nn
 
 # Prior support for (V/D, sigma_V, lambda, mu_J, sigma_J).
-# Single source of truth: the data generator samples from these ranges and
-# predictions are clipped to them, so the two can never drift apart.
+# The data generator samples from these ranges and predictions are 
+# clipped to them, so the two can never drift apart.
 PARAM_NAMES = ["V/D", "sigma_V", "lambda", "mu_J", "sigma_J"]
 PRIOR_BOUNDS = np.array([
     [0.5,  10.0],   # V/D: below 1 is allowed, since Merton only tests default at T.
@@ -29,7 +29,7 @@ class SDEPredictor(nn.Module):
 
     N_SUMMARY = 4    # realized var, bipower var, jump var, max |return|
     X_FLOOR = 1e-4   # smallest equity-to-debt ratio the features will see
-    MAX_RET = 1.0    # cap on |daily log return|; keeps near-zero equity from exploding
+    MAX_RET = 1.0    # cap on |daily log return|. This keeps near-zero equity from exploding
 
     def __init__(self, n_days=30, use_features=True):
         super().__init__()
