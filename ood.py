@@ -24,7 +24,7 @@ PARAM_NAMES = ["V/D", "sigma_V", "lambda", "mu_J", "sigma_J"]
 
 
 def _np(v):
-    """Checkpoint values are tensors (weights_only loading); work in NumPy."""
+    """Checkpoint values are tensors (weights_only loading), Numpy is needed."""
     return v.numpy() if hasattr(v, "numpy") else np.asarray(v)
 
 
@@ -89,5 +89,5 @@ def check_params(raw, clipped, rtol=1e-3):
 
 
 def flag_rate(X, stats):
-    """Share of windows flagged; on held-out simulated data this should be a few percent."""
+    """Share of windows flagged. Expect a few percent on held-out simulated data."""
     return float(np.mean([bool(check_window(x, stats)) for x in np.atleast_2d(X)]))
